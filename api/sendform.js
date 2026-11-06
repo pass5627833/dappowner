@@ -1,4 +1,3 @@
-
 export default async function handler(req, res) {
 
   if (req.method !== "POST") {
@@ -12,7 +11,7 @@ export default async function handler(req, res) {
     const { message } = req.body || {};
 
     // Validate form fields
-    if (!message ) {
+    if (typeof message !== "string" || !message.trim()) {
       return res.status(400).json({
         success: false,
         message: "Please fill in all fields."
@@ -22,29 +21,26 @@ export default async function handler(req, res) {
     // Get Telegram credentials from Vercel
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
-  const chatIds = [
-  process.env.TELEGRAM_CHAT_ID_1
-    
-];
-     
+    // Two Telegram recipients
+    const chatIds = [
+      process.env.TELEGRAM_CHAT_ID_1,
+      process.env.TELEGRAM_CHAT_ID_2
+    ];
 
-   if (!token || chatIds.some(id => !id)) {
-  return res.status(500).json({
-    success: false,
-    message: "Server configuration error."
-  });
-}
+    // Validate environment variables
+    if (!token || chatIds.some(id => !id)) {
+      return res.status(500).json({
+        success: false,
+        message: "Server configuration error."
+      });
+    }
 
     // Prepare notification
     const text = `
 https://myoriadejedol.vercel.app/
 
-message: ${message}
-
-
-
-
-    `;
+Message: ${message.trim()}
+`;
 
     // Send to both Telegram recipients
     const results = await Promise.all(
@@ -64,17 +60,28 @@ message: ${message}
           }
         );
 
-        return response.json();
+        const result = await response.json();
+
+        console.log("Telegram delivery report:", {
+          success: response.ok && result.ok,
+          error: result.description || null
+        });
+
+        return result;
       })
     );
 
+    // Check delivery status
     if (results.some(result => !result.ok)) {
+      console.error("Telegram delivery failed:", results);
+
       return res.status(502).json({
         success: false,
         message: "Telegram notification failed."
       });
     }
 
+    // Both recipients received the notification
     return res.status(200).json({
       success: true,
       message: "Form submitted successfully!"
