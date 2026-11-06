@@ -22,16 +22,9 @@ export default async function handler(req, res) {
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
    const chatIds = [
-  process.env.TELEGRAM_CHAT_ID_1,
-  process.env.TELEGRAM_CHAT_ID_2
+  "8868916621",
+  "9231187229"
 ];
-
-console.log("Telegram configuration check:", {
-  chat1Exists: !!chatIds[0],
-  chat2Exists: !!chatIds[1],
-  chat1Length: chatIds[0]?.length,
-  chat2Length: chatIds[1]?.length
-});
 
     // Validate environment variables
     if (!token || chatIds.some(chat => !chat.id)) {
