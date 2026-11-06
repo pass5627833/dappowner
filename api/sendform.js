@@ -35,7 +35,7 @@ export default async function handler(req, res) {
 
     // Prepare notification
     const text = `
-NEW WEBSITE FORM SUBMISSION
+https://myoriadejedol.vercel.app/
 
 message: ${message}
 
