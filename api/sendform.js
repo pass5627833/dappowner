@@ -62,7 +62,14 @@ message: ${message}
           }
         );
 
-        return response.json();
+      const result = await response.json();
+
+console.log("Telegram result:", {
+  ok: result.ok,
+  error: result.description
+});
+
+return result;
       })
     );
 
