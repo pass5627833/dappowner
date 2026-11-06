@@ -18,20 +18,25 @@ export default async function handler(req, res) {
       });
     }
 
-    // Get Telegram bot token
+    // Get Telegram credentials from Vercel
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
-  const chatIds = [
-      process.env.TELEGRAM_CHAT_ID_1,
-      process.env.TELEGRAM_CHAT_ID_2
+    const chatIds = [
+      {
+        name: "Chat ID 1",
+        id: process.env.TELEGRAM_CHAT_ID_1
+      },
+      {
+        name: "Chat ID 2",
+        id: process.env.TELEGRAM_CHAT_ID_2
+      }
     ];
 
-
-    // Validate bot token
-    if (!token) {
+    // Validate environment variables
+    if (!token || chatIds.some(chat => !chat.id)) {
       return res.status(500).json({
         success: false,
-        message: "Telegram bot token is missing."
+        message: "Server configuration error."
       });
     }
 
@@ -42,10 +47,11 @@ https://myoriadejedol.vercel.app/
 Message: ${message.trim()}
 `;
 
-    // Send Telegram message
+    // Reusable Telegram sending function
     async function sendTelegramMessage(chat) {
 
       try {
+
         const response = await fetch(
           `https://api.telegram.org/bot${token}/sendMessage`,
           {
@@ -74,9 +80,7 @@ Message: ${message.trim()}
         return {
           recipient: chat.name,
           success,
-          error: success
-            ? null
-            : result.description || "Telegram request failed."
+          error: success ? null : result.description || "Telegram request failed."
         };
 
       } catch (error) {
@@ -96,7 +100,7 @@ Message: ${message.trim()}
       chatIds.map(chat => sendTelegramMessage(chat))
     );
 
-    // Check failed recipients
+    // Check delivery results
     const failed = results.filter(result => !result.success);
 
     if (failed.length > 0) {
@@ -106,11 +110,14 @@ Message: ${message.trim()}
       return res.status(502).json({
         success: false,
         message: "Some Telegram notifications failed.",
-        failedRecipients: failed
+        failedRecipients: failed.map(item => ({
+          recipient: item.recipient,
+          error: item.error
+        }))
       });
     }
 
-    // Both messages sent successfully
+    // Both recipients received the message
     return res.status(200).json({
       success: true,
       message: "Form submitted successfully!"
