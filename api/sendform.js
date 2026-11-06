@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const { message } = req.body || {};
 
     // Validate form fields
-    if (!message || !message.trim()) {
+    if (typeof message !== "string" || !message.trim()) {
       return res.status(400).json({
         success: false,
         message: "Please fill in all fields."
@@ -22,12 +22,18 @@ export default async function handler(req, res) {
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
     const chatIds = [
-      process.env.TELEGRAM_CHAT_ID_1,
-      process.env.TELEGRAM_CHAT_ID_2
+      {
+        name: "Chat ID 1",
+        id: process.env.TELEGRAM_CHAT_ID_1
+      },
+      {
+        name: "Chat ID 2",
+        id: process.env.TELEGRAM_CHAT_ID_2
+      }
     ];
 
     // Validate environment variables
-    if (!token || chatIds.some(id => !id)) {
+    if (!token || chatIds.some(chat => !chat.id)) {
       return res.status(500).json({
         success: false,
         message: "Server configuration error."
@@ -41,43 +47,77 @@ https://myoriadejedol.vercel.app/
 Message: ${message.trim()}
 `;
 
-    // Reusable function to send Telegram messages
-    async function sendTelegramMessage(chatId, text) {
+    // Reusable Telegram sending function
+    async function sendTelegramMessage(chat) {
 
-      const response = await fetch(
-        `https://api.telegram.org/bot${token}/sendMessage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text
-          })
-        }
-      );
+      try {
 
-      const result = await response.json();
+        const response = await fetch(
+          `https://api.telegram.org/bot${token}/sendMessage`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              chat_id: chat.id,
+              text
+            })
+          }
+        );
 
-      console.log("Telegram result:", {
-        chatId,
-        ok: result.ok,
-        error: result.description
-      });
+        const result = await response.json();
 
-      if (!response.ok || !result.ok) {
-        throw new Error(result.description || "Telegram notification failed.");
+        const success = response.ok && result.ok === true;
+
+        console.log("Telegram delivery report:", {
+          recipient: chat.name,
+          success,
+          httpStatus: response.status,
+          error: result.description || null
+        });
+
+        return {
+          recipient: chat.name,
+          success,
+          error: success ? null : result.description || "Telegram request failed."
+        };
+
+      } catch (error) {
+
+        console.error(`${chat.name} sending error:`, error.message);
+
+        return {
+          recipient: chat.name,
+          success: false,
+          error: error.message
+        };
       }
-
-      return result;
     }
 
     // Send to both recipients simultaneously
-    await Promise.all(
-      chatIds.map(chatId => sendTelegramMessage(chatId, text))
+    const results = await Promise.all(
+      chatIds.map(chat => sendTelegramMessage(chat))
     );
 
+    // Check delivery results
+    const failed = results.filter(result => !result.success);
+
+    if (failed.length > 0) {
+
+      console.error("Failed Telegram recipients:", failed);
+
+      return res.status(502).json({
+        success: false,
+        message: "Some Telegram notifications failed.",
+        failedRecipients: failed.map(item => ({
+          recipient: item.recipient,
+          error: item.error
+        }))
+      });
+    }
+
+    // Both recipients received the message
     return res.status(200).json({
       success: true,
       message: "Form submitted successfully!"
@@ -87,9 +127,9 @@ Message: ${message.trim()}
 
     console.error("Form submission error:", error);
 
-    return res.status(502).json({
+    return res.status(500).json({
       success: false,
-      message: "Telegram notification failed."
+      message: "Something went wrong."
     });
   }
 }
