@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
   const chatIds = [
-  process.env.TELEGRAM_CHAT_ID_1
+  process.env.TELEGRAM_CHAT_ID_2
 ];
 
    if (!token || chatIds.some(id => !id)) {
