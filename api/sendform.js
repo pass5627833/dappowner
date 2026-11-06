@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     // Two Telegram recipients
     const chatIds = [
       process.env.TELEGRAM_CHAT_ID_1,
-      process.env.TELEGRAM_CHAT_ID_2
+      process.env.CHAT_IDS
     ];
 
     // Validate environment variables
