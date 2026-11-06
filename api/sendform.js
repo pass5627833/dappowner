@@ -21,17 +21,11 @@ export default async function handler(req, res) {
     // Get Telegram bot token
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
-    // Two Telegram recipients
-    const chatIds = [
-      {
-        name: "Chat ID 1",
-        id: "8868916621"
-      },
-      {
-        name: "Chat ID 2",
-        id: "9231187229"
-      }
+  const chatIds = [
+      process.env.TELEGRAM_CHAT_ID_1,
+      process.env.TELEGRAM_CHAT_ID_2
     ];
+
 
     // Validate bot token
     if (!token) {
