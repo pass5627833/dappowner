@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
   // Split the comma-separated chat IDs into an array
   const chatIds = process.env.TELEGRAM_CHAT_IDS
-    ? process.env.TELEGRAM_CHAT_IDS.split(',')
+    ? process.env.TELEGRAM_CHAT_IDS.split('9231187229,8868916621')
     : [];
 
   if (!botToken || chatIds.length === 0) {
