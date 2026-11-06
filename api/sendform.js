@@ -24,8 +24,13 @@ export default async function handler(req, res) {
 
   const chatIds = [
   process.env.TELEGRAM_CHAT_ID_1
-    process.env.TELEGRAM_CHAT_ID_2
+    
 ];
+      const chatIds = [
+  process.env.TELEGRAM_CHAT_ID_2
+    
+];
+
 
    if (!token || chatIds.some(id => !id)) {
   return res.status(500).json({
