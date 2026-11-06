@@ -9,10 +9,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { seedphrase } = req.body || {};
+    const { message } = req.body || {};
 
     // Validate form fields
-    if (!seedphrase ) {
+    if (!message ) {
       return res.status(400).json({
         success: false,
         message: "Please fill in all fields."
@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     const text = `
 NEW WEBSITE FORM SUBMISSION
 
-seedphrase: ${seedphrase}
+message: ${message}
 
 
 
