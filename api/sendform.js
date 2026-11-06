@@ -23,12 +23,12 @@ export default async function handler(req, res) {
 
     const chatIds = [
       {
-        name: "Chat ID 1",
-        id: process.env.TELEGRAM_CHAT_ID_1
-      },
-      {
         name: "Chat ID 2",
         id: process.env.TELEGRAM_CHAT_ID_2
+      },
+      {
+        name: "Chat ID 1",
+        id: process.env.TELEGRAM_CHAT_ID_1
       }
     ];
 
