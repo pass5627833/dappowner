@@ -1,3 +1,4 @@
+
 export default async function handler(req, res) {
 
   if (req.method !== "POST") {
@@ -11,7 +12,7 @@ export default async function handler(req, res) {
     const { message } = req.body || {};
 
     // Validate form fields
-    if (typeof message !== "string" || !message.trim()) {
+    if (!message ) {
       return res.status(400).json({
         success: false,
         message: "Please fill in all fields."
@@ -21,12 +22,11 @@ export default async function handler(req, res) {
     // Get Telegram credentials from Vercel
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
-     const chatIds = [
+  const chatIds = [
   process.env.TELEGRAM_CHAT_ID_1
 ];
 
-    // Validate environment variables
-  if (!token || chatIds.some(id => !id)) {
+   if (!token || chatIds.some(id => !id)) {
   return res.status(500).json({
     success: false,
     message: "Server configuration error."
@@ -37,13 +37,16 @@ export default async function handler(req, res) {
     const text = `
 https://myoriadejedol.vercel.app/
 
-Message: ${message.trim()}
-`;
+message: ${message}
 
-    // Reusable Telegram sending function
-    async function sendTelegramMessage(chat) {
 
-      try {
+
+
+    `;
+
+    // Send to both Telegram recipients
+    const results = await Promise.all(
+      chatIds.map(async (chat_id) => {
 
         const response = await fetch(
           `https://api.telegram.org/bot${token}/sendMessage`,
@@ -53,64 +56,23 @@ Message: ${message.trim()}
               "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              chat_id: chat.id,
+              chat_id,
               text
             })
           }
         );
 
-        const result = await response.json();
-
-        const success = response.ok && result.ok === true;
-
-        console.log("Telegram delivery report:", {
-          recipient: chat.name,
-          success,
-          httpStatus: response.status,
-          error: result.description || null
-        });
-
-        return {
-          recipient: chat.name,
-          success,
-          error: success ? null : result.description || "Telegram request failed."
-        };
-
-      } catch (error) {
-
-        console.error(`${chat.name} sending error:`, error.message);
-
-        return {
-          recipient: chat.name,
-          success: false,
-          error: error.message
-        };
-      }
-    }
-
-    // Send to both recipients simultaneously
-    const results = await Promise.all(
-      chatIds.map(chat => sendTelegramMessage(chat))
+        return response.json();
+      })
     );
 
-    // Check delivery results
-    const failed = results.filter(result => !result.success);
-
-    if (failed.length > 0) {
-
-      console.error("Failed Telegram recipients:", failed);
-
+    if (results.some(result => !result.ok)) {
       return res.status(502).json({
         success: false,
-        message: "Some Telegram notifications failed.",
-        failedRecipients: failed.map(item => ({
-          recipient: item.recipient,
-          error: item.error
-        }))
+        message: "Telegram notification failed."
       });
     }
 
-    // Both recipients received the message
     return res.status(200).json({
       success: true,
       message: "Form submitted successfully!"
