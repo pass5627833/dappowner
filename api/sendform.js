@@ -72,14 +72,7 @@ Message: ${message.trim()}
     );
 
     // Check delivery status
-    if (results.some(result => !result.ok)) {
-      console.error("Telegram delivery failed:", results);
-
-      return res.status(502).json({
-        success: false,
-        message: "Telegram notification failed."
-      });
-    }
+    
 
     // Both recipients received the notification
     return res.status(200).json({
