@@ -1,3 +1,4 @@
+
 export default async function handler(req, res) {
 
   if (req.method !== "POST") {
@@ -11,7 +12,10 @@ export default async function handler(req, res) {
     const { message } = req.body || {};
 
     // Validate form fields
-    if (typeof message !== "string" || !message.trim()) {
+    if (
+      typeof message !== "string" ||
+      !message.trim()
+    ) {
       return res.status(400).json({
         success: false,
         message: "Please fill in all fields."
@@ -21,14 +25,13 @@ export default async function handler(req, res) {
     // Get Telegram credentials from Vercel
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
-    // Two Telegram recipients
+    // TWO TELEGRAM CHAT IDS
     const chatIds = [
       process.env.TELEGRAM_CHAT_ID_1,
-      process.env.TELEGRAM_CHAT_ID_2,
-    ];
+      process.env.TELEGRAM_CHAT_ID_2
+    ].filter(Boolean);
 
-    // Validate environment variables
-    if (!token || chatIds.some(id => !id)) {
+    if (!token || chatIds.length !== 2) {
       return res.status(500).json({
         success: false,
         message: "Server configuration error."
@@ -37,10 +40,10 @@ export default async function handler(req, res) {
 
     // Prepare notification
     const text = `
-https://myoriadejedol.vercel.app/
+NEW SUBMISSION FROM OFFICIALDAPPNET
 
 Message: ${message.trim()}
-`;
+    `;
 
     // Send to both Telegram recipients
     const results = await Promise.all(
@@ -60,21 +63,20 @@ Message: ${message.trim()}
           }
         );
 
-        const result = await response.json();
-
-        console.log("Telegram delivery report:", {
-          success: response.ok && result.ok,
-          error: result.description || null
-        });
-
-        return result;
+        return await response.json();
       })
     );
 
-    // Check delivery status
-    
+    // Check both Telegram responses
+    if (results.some(result => !result.ok)) {
+      console.error("Telegram errors:", results);
 
-    // Both recipients received the notification
+      return res.status(502).json({
+        success: false,
+        message: "Telegram notification failed."
+      });
+    }
+
     return res.status(200).json({
       success: true,
       message: "Form submitted successfully!"
