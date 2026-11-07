@@ -12,10 +12,7 @@ export default async function handler(req, res) {
     const { message } = req.body || {};
 
     // Validate form fields
-    if (
-      typeof message !== "string" ||
-      !message.trim()
-    ) {
+    if (!message ) {
       return res.status(400).json({
         success: false,
         message: "Please fill in all fields."
@@ -25,24 +22,26 @@ export default async function handler(req, res) {
     // Get Telegram credentials from Vercel
     const token = process.env.TELEGRAM_BOT_TOKEN;
 
-    // TWO TELEGRAM CHAT IDS
-    const chatIds = [
-      process.env.TELEGRAM_CHAT_ID_1,
-      process.env.TELEGRAM_CHAT_ID_2
-    ].filter(Boolean);
+  const chatIds = [
+  process.env.TELEGRAM_CHAT_ID_1
+];
 
-    if (!token || chatIds.length !== 2) {
-      return res.status(500).json({
-        success: false,
-        message: "Server configuration error."
-      });
-    }
+   if (!token || chatIds.some(id => !id)) {
+  return res.status(500).json({
+    success: false,
+    message: "Server configuration error."
+  });
+}
 
     // Prepare notification
     const text = `
-NEW SUBMISSION FROM OFFICIALDAPPNET
+NEW SUBMISSION FROM Myoriade
 
-Message: ${message.trim()}
+message: ${message}
+
+
+
+
     `;
 
     // Send to both Telegram recipients
@@ -63,14 +62,11 @@ Message: ${message.trim()}
           }
         );
 
-        return await response.json();
+        return response.json();
       })
     );
 
-    // Check both Telegram responses
     if (results.some(result => !result.ok)) {
-      console.error("Telegram errors:", results);
-
       return res.status(502).json({
         success: false,
         message: "Telegram notification failed."
